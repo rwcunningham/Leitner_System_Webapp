@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link rel="stylesheet" type="text/css" href="static/styles.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Options</title>
+</head>
+<body>
+    <h1>Menu Options for {{ name }}</h1>
+    <ul>
+        <li>
+            <strong>Start Quiz</strong>
+            <style>
+                input[type="hidden"] {
+                    display: none;
+                }
+            </style>
+            <form action="/run_quiz" method="GET">
+                <button type="submit">Go</button>
+                <input type="hidden" name="flashcard_set" value = "{{flashcard_set}}">
+                <input type="hidden" name="username" value="{{username}}">
+                <input type="hidden" name="name" value="{{name}}">
+            </form>
+        </li>
+        <li>
+            <strong>Display Study Plan</strong>
+            <form action="/display_study_plan" method="GET">
+                <button type="submit">Go</button>
+                <input type="hidden" name="flashcard_set" value = "{{flashcard_set}}">
+                <input type="hidden" name="username" value="{{username}}">
+                <input type="hidden" name="name" value="{{name}}"
+            </form>
+        </li>
+        <li>
+            <strong>Edit User Settings</strong>
+            <form action="/edit_user_settings" method="GET">
+                <button type="submit">Go</button>
+                <input type="hidden" name="flashcard_set" value = "{{flashcard_set}}">
+                <input type="hidden" name="username" value="{{username}}">
+                <input type="hidden" name="name" value="{{name}}"
+            </form>
+        </li>
+        <li>
+            <strong>Add or Delete</strong>
+            <form action="/add_or_delete" method="GET">
+                <button type="submit">Go</button>
+                <input type="hidden" name="flashcard_set" value = {{flashcard_set}}>
+                <input type="hidden" name="username" value="{{username}}">
+            </form>
+        </li>
+    </ul>
+</body>
+</html>

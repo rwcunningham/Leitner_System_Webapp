@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="static/styles.css">
+    <title>Submit User Info</title>
+</head>
+<body>
+    <h1>Welcome {{ name }} </h1>
+    <h2>Please enter your username and the name of your flashcard set</h2>
+    <form action="/submit" method="post">
+
+      <input type="hidden" name="name" value="{{ name }}"
+      
+      <label for="username">Username:</label><br>
+      <select id="username" name="username">
+          {% for file_option in csv_files %}
+              <option value="{{ file_option }}">{{ file_option }}</option>
+          {% endfor %}
+      </select><br><br>
+      <label for="flashcard_set">Select a flashcard set:</label><br>
+      <select id="flashcard_set" name="flashcard_set">
+          {% for file_option in json_files %}
+              <option value="{{ file_option }}">{{ file_option }}</option>
+          {% endfor %}
+    </select><br><br>
+    <form action="front_card" method="POST">
+        <input type="hidden" name="name" value="{{ name }}">
+        <input type="hidden" name="username" value = "{{ username}}">
+        <input type="hidden" name="flashcard_set" value="{{flashcard_set}}">
+        <input type="hidden" name="current_leitner_system" value="current_leitner_system">
+        <input type="submit" value="Start Studying">
+    </form>
+</body>
+</html>

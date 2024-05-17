@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="static/styles.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Run Quiz</title>
+    <style>
+        /* CSS styles for the notecard */
+        .notecard {
+            width: 200px; /* Adjust size as needed */
+            height: 150px; /* Adjust size as needed */
+            background-color: white;
+            border: 1px solid black;
+            padding: 20px;
+            margin: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="row">
+            <div>Day: {{ current_leitner_system.current_day }}</div>
+            <div>Box #: {{ current_box }}/{{ current_leitner_system.num_boxes }}</div>
+            <div> Question: </div>
+        </div>
+    </div>
+
+    <!-- White notecard sized square -->
+    <div class="notecard">
+        <!-- Space for text -->
+        <p>{{ current_leitner_system.boxes[current_box - 1][current_card]['answer'] }}</p>
+    </div>
+    <!--- We need to pass our leitner object to the next page-->    
+    <form action="/back_card" method="POST">
+        <input type="hidden" name="username" value="{{ username }}">
+        <input type="hidden" name="flashcard_set" value="{{ flashcard_set }}">
+        <input type="hidden" name="name" value="{{ name }}">
+    
+        <input type="hidden" name="current_box" value="{{ current_box }}">
+        <input type="hidden" name="current_card" value="{{ current_card }}">
+        <!-- Button for Correct -->
+        <button type="submit" name="correct" value="true">Correct</button>
+
+        <!-- Button for Incorrect -->
+        <button type="submit" name="correct" value="false">Incorrect</button>
+    </form>
+</body>
+</html>

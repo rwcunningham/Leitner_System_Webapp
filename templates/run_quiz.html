@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="static/styles.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Run Quiz</title>
+</head>
+<body>
+    <div class="header">
+        <div class="row">
+            <div>Day: {{ current_leitner_system.current_day }}</div>
+            <div>Box #: {{ current_box_num }}/{{ current_leitner_system.num_boxes }}</div>
+        </div>
+    </div>
+    <div class="welcome-message">
+        <p>Welcome {{ name }}, these are your boxes for today:</p>
+        <p> You are studying {{flashcard_set}} using {{username}}'s settings</p>
+        <ul>
+            {% for box in todays_boxes %}
+                <li>Box number: {{ box }}</li>
+            {% endfor %}
+        </ul>
+        <form action="run_quiz" method="POST">
+            <input type="hidden" name="flashcard_set" value = "{{flashcard_set}}">
+            <input type="hidden" name="username" value="{{username}}">
+            <input type="hidden" name="name" value="{{name}}">
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>
